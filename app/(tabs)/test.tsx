@@ -156,10 +156,10 @@ const IshiharaTest = () => {
           <Text style={styles.analysisTitle}>Analysis:</Text>
           <Text style={styles.interpretation}>{analyzeDeficiency()}</Text>
           <Text style={styles.score}>Your Score: {score} / {plates.length}</Text>
+          <TouchableOpacity style={styles.restartButton} onPress={restartTest}>
+            <Text style={styles.restartButtonText}>Restart Test</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.restartButton} onPress={restartTest}>
-          <Text style={styles.restartButtonText}>Restart Test</Text>
-        </TouchableOpacity>
       </View>
     );
   };
@@ -286,9 +286,10 @@ const styles = StyleSheet.create({
   },
   score: {
     fontSize: 18,
-    marginTop: 10,
+    marginTop: 20,
     color: 'black',
     textAlign:'center',
+    fontWeight:'700',
   },
   analysisContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -325,14 +326,16 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   restartButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: 'black',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 30,
+    marginTop: 4,
   },
   restartButtonText: {
     fontSize: 18,
     color: 'white',
     textAlign: 'center',
+    fontWeight:'700',  
   },
 });
 
