@@ -5,7 +5,7 @@ import { PieChart } from 'react-native-chart-kit';
 const ishiharaPlates = [
   { id: 1, image: require('./assets/plate1.png'), correctAnswer: '12', deficiencyType: 'red' },
   { id: 2, image: require('./assets/plate2.png'), correctAnswer: '8', deficiencyType: 'green' },
-  { id: 3, image: require('./assets/plate3.png'), correctAnswer: '6', deficiencyType: 'red-green' },
+  { id: 3, image: require('./assets/plate3.png'), correctAnswer: '6', deficiencyType: 'yellow' },
   // Add more plates with correctAnswer and deficiencyType
 ];
 
@@ -116,20 +116,20 @@ const IshiharaTest = () => {
           { name: 'Green', population: deficiencyScore.green, color: 'rgba(0, 255, 0, 0.7)', legendFontColor: '#7F7F7F', legendFontSize: 12 },
           { name: 'Yellow', population: deficiencyScore.yellow, color: 'rgba(255, 255, 0, 0.7)', legendFontColor: '#7F7F7F', legendFontSize: 12 },
         ];
-
+  
     return (
-      <ScrollView contentContainerStyle={styles.resultsContainer}>
-        <Text style={styles.results}>Test Completed!</Text>
-        <Text style={styles.score}>Your Score: {score} / {plates.length}</Text>
-        <View style={styles.analysisContainer}>
-          <Text style={styles.analysisTitle}>Analysis:</Text>
-          <Text style={styles.interpretation}>{analyzeDeficiency()}</Text>
+      <View style={styles.resultsContainer}>
+            <View style={{ alignItems: 'center' }}>
+      <Text style={styles.title}>ISHIHARA TEST</Text>
+    </View>
+        <View style={{ alignItems: 'center' }}>
+          {/* <Text style={styles.results}>Test Completed!</Text> */}
+          {/* <Text style={styles.score}>Your Score: {score} / {plates.length}</Text> */}
         </View>
         <View style={styles.chartContainer}>
           <Text style={styles.chartTitle}>
             {isPerfectScore ? "Color Distribution of Test Plates" : "Color Deficiency Distribution"}
           </Text>
-         
           <PieChart
             data={chartData}
             width={300}
@@ -151,14 +151,19 @@ const IshiharaTest = () => {
             absolute
             style={styles.chart}
           />
-         
+        </View>
+        <View style={styles.analysisContainer}>
+          <Text style={styles.analysisTitle}>Analysis:</Text>
+          <Text style={styles.interpretation}>{analyzeDeficiency()}</Text>
+          <Text style={styles.score}>Your Score: {score} / {plates.length}</Text>
         </View>
         <TouchableOpacity style={styles.restartButton} onPress={restartTest}>
           <Text style={styles.restartButtonText}>Restart Test</Text>
         </TouchableOpacity>
-      </ScrollView>
+      </View>
     );
   };
+  
 
   const renderTest = () => {
     if (isLoading || plates.length === 0) {
@@ -167,6 +172,9 @@ const IshiharaTest = () => {
 
     return (
       <View>
+        <View style={{ alignItems: 'center' }}>
+          <Text style={styles.title}>ISHIHARA TEST</Text>
+        </View>
         <View style={styles.imageContainer}>
         <Image source={plates[currentPlateIndex].image} style={styles.image} />
         </View>
@@ -190,9 +198,11 @@ const IshiharaTest = () => {
 
   return (
     <View style={styles.container}>
+    {/* <View style={{ alignItems: 'center' }}>
       <Text style={styles.title}>ISHIHARA TEST</Text>
-      {testCompleted ? renderResults() : renderTest()}
-    </View>
+    </View> */}
+    {testCompleted ? renderResults() : renderTest()}
+  </View>
   );
 };
 
@@ -265,10 +275,9 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
   },
   resultsContainer: {
-    alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-  },
+  },  
   results: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -277,8 +286,9 @@ const styles = StyleSheet.create({
   },
   score: {
     fontSize: 18,
-    marginBottom: 10,
-    color: 'white',
+    marginTop: 10,
+    color: 'black',
+    textAlign:'center',
   },
   analysisContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
